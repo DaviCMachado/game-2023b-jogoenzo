@@ -5,17 +5,21 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 
 public class Main extends ApplicationAdapter {
     private OrthographicCamera camera;
+    private Viewport viewport;
     static public Vector3 worldCoordinates;
     private Ball ball;
 
     @Override
     public void create() {
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, 1280, 720);
+        camera.setToOrtho(false);
+        viewport = new FitViewport(1280, 720);
 
         worldCoordinates = new Vector3();
 
@@ -26,9 +30,19 @@ public class Main extends ApplicationAdapter {
         );
     }
 
+    public void resize(int width, int height) {
+        viewport.update(width, height);
+    }
+
     @Override
     public void render() {
-        worldCoordinates = camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
+        worldCoordinates = camera.unproject(
+                new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0),
+                viewport.getScreenX(),
+                viewport.getScreenY(),
+                viewport.getScreenWidth(),
+                viewport.getScreenHeight()
+        );
 
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
