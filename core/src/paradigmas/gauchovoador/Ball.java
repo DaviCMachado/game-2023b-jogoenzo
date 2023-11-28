@@ -1,6 +1,5 @@
 package paradigmas.gauchovoador;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
@@ -23,7 +22,7 @@ public class Ball {
     }
 
     public void update() {
-        float mouseY = Gdx.graphics.getHeight() - Gdx.input.getY();
+        float mouseY = Main.worldCoordinates.y;
         position.y = Interpolation.linear.apply(position.y, mouseY, 0.05f);
     }
 }
