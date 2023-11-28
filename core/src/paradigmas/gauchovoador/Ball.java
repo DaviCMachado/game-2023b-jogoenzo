@@ -2,35 +2,28 @@ package paradigmas.gauchovoador;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.math.Vector2;
 
 public class Ball {
     ShapeRenderer renderer;
-    private int x;
-    private int y;
-    private final int r;
-    private int xSpeed = 5, ySpeed = 5;
+    private final Vector2 position;
+    private final float r;
 
     public Ball(int x, int y, int r) {
         renderer = new ShapeRenderer();
-        this.x = x;
-        this.y = y;
+        position = new Vector2(x, y);
         this.r = r;
     }
 
     public void render() {
         renderer.begin(ShapeRenderer.ShapeType.Filled);
-        renderer.circle(x, y, r);
+        renderer.circle(position.x, position.y, r);
         renderer.end();
     }
 
     public void update() {
-        x += xSpeed;
-        y += ySpeed;
-        if (x < 0 || x > Gdx.graphics.getWidth()) {
-            xSpeed = -xSpeed;
-        }
-        if (y < 0 || y > Gdx.graphics.getHeight()) {
-            ySpeed = -ySpeed;
-        }
+        float mouseY = Gdx.graphics.getHeight() - Gdx.input.getY();
+        position.y = Interpolation.linear.apply(position.y, mouseY, 0.05f);
     }
 }
