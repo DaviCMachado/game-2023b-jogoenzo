@@ -11,7 +11,9 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class Main extends ApplicationAdapter {
     private OrthographicCamera camera;
-    private Viewport viewport;
+    static public final float WORLD_WIDTH = 1280;
+    static public final float WORLD_HEIGHT = 720;
+    static public Viewport viewport;
     static public Vector3 worldCoordinates;
     private Ball ball;
 
@@ -19,7 +21,7 @@ public class Main extends ApplicationAdapter {
     public void create() {
         camera = new OrthographicCamera();
         camera.setToOrtho(false);
-        viewport = new FitViewport(1280, 720);
+        viewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT);
 
         worldCoordinates = new Vector3();
 

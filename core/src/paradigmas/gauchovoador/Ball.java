@@ -24,5 +24,6 @@ public class Ball {
     public void update() {
         float mouseY = Main.worldCoordinates.y;
         position.y = Interpolation.linear.apply(position.y, mouseY, 0.05f);
+        position.y = Math.max(Math.min(position.y, Main.WORLD_HEIGHT - r), r);
     }
 }
