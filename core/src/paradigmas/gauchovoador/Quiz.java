@@ -7,7 +7,9 @@ import com.badlogic.gdx.utils.JsonValue;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.Array;
 
-public class Quiz {
+import java.util.Iterator;
+
+public class Quiz implements Iterator<Question> {
     private final Array<Question> questions;
 
     public Quiz() {
@@ -26,12 +28,19 @@ public class Quiz {
         questions.shuffle();
     }
 
-    public boolean hasQuestions() {
+    @Override
+    public boolean hasNext() {
         return questions.notEmpty();
     }
 
-    public Question nextQuestion() {
+    @Override
+    public Question next() {
         return questions.pop();
+    }
+
+    @Override
+    public void remove() {
+        throw new UnsupportedOperationException();
     }
 
     @Override
