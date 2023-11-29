@@ -2,9 +2,11 @@ package paradigmas.gauchovoador;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -32,7 +34,8 @@ public class Main extends ApplicationAdapter {
         ball = new Ball(
                 Gdx.graphics.getWidth() * 15 / 100,
                 Gdx.graphics.getHeight() * 50 / 100,
-                Gdx.graphics.getHeight() * 6 / 100
+                Gdx.graphics.getHeight() * 6 / 100,
+                Color.BLACK
         );
     }
 
@@ -51,7 +54,7 @@ public class Main extends ApplicationAdapter {
                 viewport.getScreenHeight()
         );
 
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        ScreenUtils.clear(Color.ROYAL);
 
         update();
         ball.render();
