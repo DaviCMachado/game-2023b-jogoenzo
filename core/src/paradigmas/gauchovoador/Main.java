@@ -16,9 +16,13 @@ public class Main extends ApplicationAdapter {
     static public Viewport viewport;
     static public Vector3 worldCoordinates;
     private Ball ball;
+    private Quiz quiz;
 
     @Override
     public void create() {
+        quiz = new Quiz();
+        System.out.println(quiz);
+
         camera = new OrthographicCamera();
         camera.setToOrtho(false);
         viewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT);
