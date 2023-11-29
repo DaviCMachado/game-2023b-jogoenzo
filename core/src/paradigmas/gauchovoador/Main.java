@@ -3,7 +3,7 @@ package paradigmas.gauchovoador;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -22,21 +22,22 @@ public class Main extends ApplicationAdapter {
 
     @Override
     public void create() {
-        quiz = new Quiz();
-        System.out.println(quiz);
+            quiz = new Quiz();
+            System.out.println(quiz);
 
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false);
-        viewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT);
+            camera = new OrthographicCamera();
+            camera.setToOrtho(false);
+            viewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT);
 
-        worldCoordinates = new Vector3();
+            worldCoordinates = new Vector3();
 
-        ball = new Ball(
-                Gdx.graphics.getWidth() * 15 / 100,
-                Gdx.graphics.getHeight() * 50 / 100,
-                Gdx.graphics.getHeight() * 6 / 100,
-                Color.BLACK
-        );
+            ball = new Ball(
+                    new Circle(
+                    Gdx.graphics.getWidth() * 15 / 100f,
+                    Gdx.graphics.getHeight() * 50 / 100f,
+                    Gdx.graphics.getHeight() * 6 / 100f),
+                    Color.BLACK
+            );
     }
 
     @Override
@@ -46,6 +47,7 @@ public class Main extends ApplicationAdapter {
 
     @Override
     public void render() {
+        camera.update();
         worldCoordinates = camera.unproject(
                 new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0),
                 viewport.getScreenX(),
