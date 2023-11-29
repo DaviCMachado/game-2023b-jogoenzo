@@ -5,10 +5,10 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonValue;
 import com.badlogic.gdx.utils.JsonReader;
-import com.badlogic.gdx.utils.ObjectMap;
+import com.badlogic.gdx.utils.Array;
 
 public class Quiz {
-    ObjectMap<String, Question> questions;
+    Array<Question> questions;
 
     public Quiz() {
         Json json = new Json();
@@ -16,12 +16,22 @@ public class Quiz {
         String jsonString = questionsFileHandle.readString();
         JsonValue root = new JsonReader().parse(jsonString);
 
-        questions = new ObjectMap<>();
+        questions = new Array<>();
 
         for (JsonValue questionValue : root.get("questions")) {
             Question question = json.fromJson(Question.class, questionValue.toString());
-            questions.put(Integer.toString(question.getId()), question);
+            questions.add(question);
         }
+
+        questions.shuffle();
+    }
+
+    public boolean hasQuestions() {
+        return questions.notEmpty();
+    }
+
+    public Question nextQuestion() {
+        return questions.pop();
     }
 
     @Override
