@@ -53,7 +53,11 @@ public class Main extends ApplicationAdapter {
 
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        ball.update();
+        update();
         ball.render();
+    }
+
+    private void update() {
+        ball.update();
     }
 }

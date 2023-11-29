@@ -8,7 +8,7 @@ import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.Array;
 
 public class Quiz {
-    Array<Question> questions;
+    private final Array<Question> questions;
 
     public Quiz() {
         Json json = new Json();
