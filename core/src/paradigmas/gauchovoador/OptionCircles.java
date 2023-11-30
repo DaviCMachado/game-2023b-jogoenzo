@@ -19,7 +19,7 @@ public class OptionCircles {
     private final int answer;
     private final Array<Circle> circles;
     private final int speed;
-    private final float circleRadius = Main.WORLD_HEIGHT * 6 / 100f;
+    private final float circleRadius = GameScreen.WORLD_HEIGHT * 6 / 100f;
     private final ShapeRenderer renderer;
 
     public OptionCircles(Question question, int speed) {
@@ -37,8 +37,8 @@ public class OptionCircles {
         for (int i = 0; i < options.size; i++) {
             circles.add(new Circle(
                     // TODO: dividir em seções
-                    Main.WORLD_WIDTH + circleRadius + rand.nextFloat(Main.WORLD_WIDTH / 2),
-                    rand.nextFloat(circleRadius, Main.WORLD_HEIGHT - circleRadius),
+                    GameScreen.WORLD_WIDTH + circleRadius + rand.nextFloat(GameScreen.WORLD_WIDTH / 2),
+                    rand.nextFloat(circleRadius, GameScreen.WORLD_HEIGHT - circleRadius),
                     circleRadius
             ));
         }

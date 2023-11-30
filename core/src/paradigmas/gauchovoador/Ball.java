@@ -24,8 +24,8 @@ public class Ball {
     }
 
     public void update() {
-        float mouseY = Main.worldCoordinates.y;
+        float mouseY = GameScreen.worldCoordinates.y;
         circle.y = Interpolation.linear.apply(circle.y, mouseY, 0.05f);
-        circle.y = Math.max(Math.min(circle.y, Main.WORLD_HEIGHT - circle.radius), circle.radius);
+        circle.y = Math.max(Math.min(circle.y, GameScreen.WORLD_HEIGHT - circle.radius), circle.radius);
     }
 }
