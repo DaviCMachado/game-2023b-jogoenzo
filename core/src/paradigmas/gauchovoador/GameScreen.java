@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -15,11 +15,12 @@ public class GameScreen implements Screen {
     private final OrthographicCamera camera;
     static public Viewport viewport;
     static public Vector3 worldCoordinates;
-    private final Ball ball;
+    private final Bagualo bagualo;
     static public final float WORLD_WIDTH = 1280;
     static public final float WORLD_HEIGHT = 720;
     private final Quiz quiz;
     private OptionCircles optionCircles;
+    private final Texture backgroundTexture;
 
     public GameScreen(final Main game) {
         this.game = game;
@@ -32,17 +33,30 @@ public class GameScreen implements Screen {
 
         worldCoordinates = new Vector3();
 
-        ball = new Ball(
-                new Circle(
-                        WORLD_WIDTH * 15 / 100f,
-                        WORLD_HEIGHT * 50 / 100f,
-                        WORLD_HEIGHT * 6 / 100f),
-                Color.RED
-        );
+        bagualo = new Bagualo();
+
+        backgroundTexture = new Texture("poa-bg.png");
     }
 
     @Override
     public void render(float delta) {
+        updateCoordinates();
+
+        ScreenUtils.clear(Color.ROYAL);
+        game.batch.setProjectionMatrix(camera.combined);
+        game.batch.begin();
+
+        game.batch.draw(backgroundTexture, 0, 0);
+
+        bagualo.update();
+        bagualo.render(game.batch);
+
+        game.batch.end();
+
+        advance();
+    }
+
+    private void updateCoordinates() {
         camera.update();
         worldCoordinates = camera.unproject(
                 new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0),
@@ -51,10 +65,6 @@ public class GameScreen implements Screen {
                 viewport.getScreenWidth(),
                 viewport.getScreenHeight()
         );
-
-        ScreenUtils.clear(Color.ROYAL);
-
-        advance();
     }
 
     private void advance() {
@@ -64,9 +74,6 @@ public class GameScreen implements Screen {
 
         optionCircles.update();
         optionCircles.render();
-
-        ball.update();
-        ball.render();
     }
 
     @Override
