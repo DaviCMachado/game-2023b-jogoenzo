@@ -19,7 +19,7 @@ public class OptionCircles {
     private final int answer;
     private final Array<Circle> circles;
     private final int speed;
-    private final float circleRadius = GameScreen.WORLD_HEIGHT * 6 / 100f;
+    private final float circleRadius = GameScreen.WORLD_HEIGHT * 8 / 100f;
     private final ShapeRenderer renderer;
 
     public OptionCircles(Question question, int speed) {

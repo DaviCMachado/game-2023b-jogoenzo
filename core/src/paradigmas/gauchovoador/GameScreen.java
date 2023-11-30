@@ -18,11 +18,13 @@ public class GameScreen implements Screen {
     private final Ball ball;
     static public final float WORLD_WIDTH = 1280;
     static public final float WORLD_HEIGHT = 720;
+    private final Quiz quiz;
+    private OptionCircles optionCircles;
 
     public GameScreen(final Main game) {
         this.game = game;
 
-        Quiz quiz = new Quiz();
+        quiz = new Quiz();
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false);
@@ -51,6 +53,17 @@ public class GameScreen implements Screen {
         );
 
         ScreenUtils.clear(Color.ROYAL);
+
+        advance();
+    }
+
+    private void advance() {
+        if ((optionCircles == null || optionCircles.allOutOfBounds()) && quiz.hasNext()) {
+            optionCircles = new OptionCircles(quiz.next(), 3);
+        }
+
+        optionCircles.update();
+        optionCircles.render();
 
         ball.update();
         ball.render();
