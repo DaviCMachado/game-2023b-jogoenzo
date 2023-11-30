@@ -33,10 +33,10 @@ public class Main extends ApplicationAdapter {
 
             ball = new Ball(
                     new Circle(
-                    Gdx.graphics.getWidth() * 15 / 100f,
-                    Gdx.graphics.getHeight() * 50 / 100f,
-                    Gdx.graphics.getHeight() * 6 / 100f),
-                    Color.BLACK
+                    WORLD_WIDTH * 15 / 100f,
+                    WORLD_HEIGHT * 50 / 100f,
+                    WORLD_HEIGHT * 6 / 100f),
+                    Color.RED
             );
     }
 

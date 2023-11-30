@@ -8,7 +8,8 @@ public class Question {
     private final Array<String> options;
     private final int answer;
 
-    public Question() {
+   // Construtor usado na serialização do arquivo JSON na classe Quiz.
+    private Question() {
         id = -1;
         text = null;
         options = null;
