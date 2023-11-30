@@ -10,7 +10,7 @@ public class DesktopLauncher {
 
 	public static void main (String[] args) {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
-		config.setTitle("Gaúcho Voador");
+		config.setTitle("Bagualoquiz");
 		config.setWindowedMode(windowWidth, windowHeight);
 		config.setForegroundFPS(60);
 		config.useVsync(true);

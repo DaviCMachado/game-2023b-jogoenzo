@@ -18,14 +18,16 @@ public class OptionCircles {
     private final Array<String> options;
     private final int answer;
     private final Array<Circle> circles;
-    private final int speed;
+    private final float speed;
     private final float circleRadius = GameScreen.WORLD_HEIGHT * 8 / 100f;
     private final ShapeRenderer renderer;
+    public boolean active;
 
-    public OptionCircles(Question question, int speed) {
+    public OptionCircles(Question question, float speed) {
         renderer = new ShapeRenderer();
         options = question.getOptions();
         answer = question.getAnswer();
+        active = true;
         this.speed = speed;
         circles = new Array<>();
         randomizeCircles();
@@ -56,6 +58,8 @@ public class OptionCircles {
     }
 
     public IntersectionWithCircles hitsAnyCircle(Rectangle rect) {
+        if (!active) return IntersectionWithCircles.NO;
+
         for (int i = 0; i < circles.size; i++) {
             if (Intersector.overlaps(circles.get(i), rect)) {
                 if (i == answer) {
@@ -74,10 +78,20 @@ public class OptionCircles {
     }
 
     public void render() {
-        renderer.begin(ShapeRenderer.ShapeType.Filled);
+        ShapeRenderer.ShapeType type = (active) ? ShapeRenderer.ShapeType.Filled : ShapeRenderer.ShapeType.Line;
+
+        renderer.begin(type);
         for (Circle c : circles) {
             renderer.circle(c.x, c.y, c.radius);
         }
         renderer.end();
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

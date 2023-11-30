@@ -4,13 +4,19 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.math.Rectangle;
 
 public class Bagualo {
     private final Sprite sprite;
+    private int lives;
+    private int score;
 
-    public Bagualo() {
+    public Bagualo(int lives) {
+        this.lives = lives;
+        score = 0;
+
         sprite = new Sprite(new Texture("bagualo.png"));
-        sprite.setSize(sprite.getWidth() * 0.2f, sprite.getHeight() * 0.2f);
+        sprite.setSize(sprite.getWidth() * 0.7f, sprite.getHeight() * 0.7f);
         sprite.setOrigin(0, 0);
         sprite.setCenter(GameScreen.WORLD_WIDTH * 12f / 100, GameScreen.WORLD_HEIGHT * 50f / 100);
     }
@@ -30,5 +36,25 @@ public class Bagualo {
                         0
                 )
         );
+    }
+
+    public Rectangle getBoundingRectangle() {
+        return sprite.getBoundingRectangle();
+    }
+
+    public int getLives() {
+        return lives;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void increaseScore(int increase) {
+        score += increase;
+    }
+
+    public boolean decreaseLive() {
+        return --lives <= 0;
     }
 }

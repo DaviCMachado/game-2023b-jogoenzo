@@ -22,6 +22,11 @@ public class GameScreen implements Screen {
     private OptionCircles optionCircles;
     private final Texture backgroundTexture;
 
+    private enum Endgame {
+        LOSE,
+        WIN,
+    }
+
     public GameScreen(final Main game) {
         this.game = game;
 
@@ -33,9 +38,9 @@ public class GameScreen implements Screen {
 
         worldCoordinates = new Vector3();
 
-        bagualo = new Bagualo();
+        bagualo = new Bagualo(3);
 
-        backgroundTexture = new Texture("poa-bg.png");
+        backgroundTexture = new Texture("quarta-bg.png");
     }
 
     @Override
@@ -48,12 +53,12 @@ public class GameScreen implements Screen {
 
         game.batch.draw(backgroundTexture, 0, 0);
 
-        bagualo.update();
         bagualo.render(game.batch);
 
         game.batch.end();
 
-        advance();
+        advanceLogic();
+        optionCircles.render();
     }
 
     private void updateCoordinates() {
@@ -67,13 +72,41 @@ public class GameScreen implements Screen {
         );
     }
 
-    private void advance() {
-        if ((optionCircles == null || optionCircles.allOutOfBounds()) && quiz.hasNext()) {
-            optionCircles = new OptionCircles(quiz.next(), 3);
+    private void advanceLogic() {
+        if (!quiz.hasNext()) {
+            if (bagualo.getLives() > 0) {
+                endgame(Endgame.WIN);
+            } else {
+                endgame(Endgame.LOSE);
+            }
+        }
+
+        if ((optionCircles == null || optionCircles.allOutOfBounds())) {
+            optionCircles = new OptionCircles(quiz.next(), 1.5f);
         }
 
         optionCircles.update();
-        optionCircles.render();
+        bagualo.update();
+
+        OptionCircles.IntersectionWithCircles intersectionResult = optionCircles.hitsAnyCircle(bagualo.getBoundingRectangle());
+        switch (intersectionResult) {
+            case NO:
+                break;
+            case YES_WRONG:
+                optionCircles.setActive(false);
+                if (bagualo.decreaseLive()) {
+                    endgame(Endgame.LOSE);
+                }
+                break;
+            case YES_CORRECT:
+                optionCircles.setActive(false);
+                bagualo.increaseScore(5);
+                break;
+        }
+    }
+
+    void endgame(Endgame result) {
+        throw new UnsupportedOperationException();
     }
 
     @Override
