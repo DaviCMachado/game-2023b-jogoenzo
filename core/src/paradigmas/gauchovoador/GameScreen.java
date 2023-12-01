@@ -46,19 +46,21 @@ public class GameScreen implements Screen {
     @Override
     public void render(float delta) {
         updateCoordinates();
+        advanceLogic();
 
-        ScreenUtils.clear(Color.ROYAL);
+        ScreenUtils.clear(Color.BLACK);
+
         game.batch.setProjectionMatrix(camera.combined);
         game.batch.begin();
-
         game.batch.draw(backgroundTexture, 0, 0);
-
-        bagualo.render(game.batch);
-
         game.batch.end();
 
-        advanceLogic();
-        optionCircles.render();
+        optionCircles.renderCircles();
+
+        game.batch.begin();
+        bagualo.render(game.batch, game.font);
+        optionCircles.renderText(game.batch, game.font);
+        game.batch.end();
     }
 
     private void updateCoordinates() {
@@ -82,7 +84,7 @@ public class GameScreen implements Screen {
         }
 
         if ((optionCircles == null || optionCircles.allOutOfBounds())) {
-            optionCircles = new OptionCircles(quiz.next(), 1.5f);
+            optionCircles = new OptionCircles(quiz.next(), 3.5f);
         }
 
         optionCircles.update();

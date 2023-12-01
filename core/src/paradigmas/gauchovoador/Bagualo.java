@@ -1,19 +1,26 @@
 package paradigmas.gauchovoador;
 
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import com.badlogic.gdx.utils.Align;
 
 public class Bagualo {
     private final Sprite sprite;
     private int lives;
     private int score;
+    private GlyphLayout layout;
 
     public Bagualo(int lives) {
         this.lives = lives;
         score = 0;
+        layout = new GlyphLayout();
 
         sprite = new Sprite(new Texture("bagualo.png"));
         sprite.setSize(sprite.getWidth() * 0.7f, sprite.getHeight() * 0.7f);
@@ -21,8 +28,10 @@ public class Bagualo {
         sprite.setCenter(GameScreen.WORLD_WIDTH * 12f / 100, GameScreen.WORLD_HEIGHT * 50f / 100);
     }
 
-    public void render(SpriteBatch batch) {
+    public void render(SpriteBatch batch, BitmapFont font) {
         sprite.draw(batch);
+        layout.setText(font, String.format("Vidas:    %d%nPontos:  %d", lives, score), Color.BLACK, 0, Align.left, false);
+        font.draw(batch, layout, GameScreen.WORLD_WIDTH * 0.90f, GameScreen.WORLD_HEIGHT * 0.95f);
     }
 
     public void update() {
