@@ -1,6 +1,5 @@
 package paradigmas.gauchovoador;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -15,7 +14,7 @@ public class Bagualo {
     private final Sprite sprite;
     private int lives;
     private int score;
-    private GlyphLayout layout;
+    private final GlyphLayout layout;
 
     public Bagualo(int lives) {
         this.lives = lives;
@@ -25,23 +24,23 @@ public class Bagualo {
         sprite = new Sprite(new Texture("bagualo.png"));
         sprite.setSize(sprite.getWidth() * 0.7f, sprite.getHeight() * 0.7f);
         sprite.setOrigin(0, 0);
-        sprite.setCenter(GameScreen.WORLD_WIDTH * 12f / 100, GameScreen.WORLD_HEIGHT * 50f / 100);
+        sprite.setCenter(Main.WORLD_WIDTH * 12f / 100, Main.WORLD_HEIGHT * 50f / 100);
     }
 
     public void render(SpriteBatch batch, BitmapFont font) {
         sprite.draw(batch);
         layout.setText(font, String.format("Vidas:    %d%nPontos:  %d", lives, score), Color.BLACK, 0, Align.left, false);
-        font.draw(batch, layout, GameScreen.WORLD_WIDTH * 0.90f, GameScreen.WORLD_HEIGHT * 0.95f);
+        font.draw(batch, layout, Main.WORLD_WIDTH * 0.90f, Main.WORLD_HEIGHT * 0.95f);
     }
 
     public void update() {
-        float mouseY = GameScreen.worldCoordinates.y;
+        float mouseY = Main.worldCoordinates.y;
         sprite.setY(Interpolation.linear.apply(sprite.getY(), mouseY, 0.05f));
         sprite.setY(
                 Math.max(
                         Math.min(
                                 sprite.getY(),
-                                GameScreen.WORLD_HEIGHT - sprite.getHeight() * 0.9f),
+                                Main.WORLD_HEIGHT - sprite.getHeight() * 0.9f),
                         0
                 )
         );

@@ -1,6 +1,5 @@
 package paradigmas.gauchovoador;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -28,7 +27,7 @@ public class OptionCircles {
 
     private final String prompt;
     private final float speed;
-    private final float circleRadius = GameScreen.WORLD_HEIGHT * 8 / 100f;
+    private final float circleRadius = Main.WORLD_HEIGHT * 8 / 100f;
     private final ShapeRenderer renderer;
     private final GlyphLayout layout;
     public boolean active;
@@ -52,13 +51,13 @@ public class OptionCircles {
         for (int i = 0; i < options.size; i++) {
             float xPos;
             if (circles.notEmpty()) {
-                xPos = circles.peek().x + 2 * circleRadius + rand.nextFloat(GameScreen.WORLD_WIDTH / 8f);
+                xPos = circles.peek().x + 2 * circleRadius + rand.nextFloat(Main.WORLD_WIDTH / 8f);
             } else {
-                xPos = GameScreen.WORLD_WIDTH * 5 / 4f;
+                xPos = Main.WORLD_WIDTH * 5 / 4f;
             }
             circles.add(new Circle(
                     xPos,
-                    rand.nextFloat(circleRadius, GameScreen.WORLD_HEIGHT - circleRadius),
+                    rand.nextFloat(circleRadius, Main.WORLD_HEIGHT - circleRadius),
                     circleRadius
             ));
         }
@@ -119,7 +118,7 @@ public class OptionCircles {
         if (!active) return;
 
         layout.setText(font, prompt, Color.BLACK, 0f, Align.center, false);
-        font.draw(batch, layout, GameScreen.WORLD_WIDTH / 2, GameScreen.WORLD_HEIGHT * 0.95f);
+        font.draw(batch, layout,  Main.WORLD_WIDTH / 2, Main.WORLD_HEIGHT * 0.95f);
 
         // Colocar texto em uma bola é mais difícil do que parece.
         for (int i = 0; i < 4; i++) {
