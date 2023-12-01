@@ -2,75 +2,75 @@
   "questions": [
     {
       "id": 1,
-      "text": "Qual personagem histórico gaúcho foi conhecido como 'o herói de dois mundos'?",
-      "options": ["Bento Gonçalves", "Giuseppe Garibaldi", "Anita Garibaldi", "David Canabarro"],
-      "answer": 1
-    },
-    {
-      "id": 2,
-      "text": "Em que ano iniciou a Revolução Farroupilha?",
-      "options": [1835, 1845, 1823, 1860],
-      "answer": 0
-    },
-    {
-      "id": 3,
-      "text": "Qual cidade gaúcha é famosa por sediar um festival de cinema?",
-      "options": ["Caxias do Sul", "Porto Alegre", "Gramado", "Pelotas"],
-      "answer": 2
-    },
-    {
-      "id": 4,
-      "text": "Quem foi o presidente do Brasil durante a Proclamação da República que teve apoio do Rio Grande do Sul?",
-      "options": ["Getúlio Vargas", "Deodoro da Fonseca", "Floriano Peixoto", "Prudente de Morais"],
-      "answer": 1
-    },
-    {
-      "id": 5,
-      "text": "O que representa o termo 'Gaudério' na cultura gaúcha?",
-      "options": ["Dança típica", "Cavalariano", "Poeta regional", "Prato típico"],
-      "answer": 1
-    },
-    {
-      "id": 6,
-      "text": "Qual é o monumento que homenageia os participantes da Revolução Farroupilha em Porto Alegre?",
-      "options": ["Monumento à Independência", "Monumento aos Açorianos", "Monumento do Expedicionário", "Monumento ao Laçador"],
+      "text": "Qual das cidades não faz parte do Geoparque da Quarta Colônia'?",
+      "options": ["Faxinal do Soturno", "Ivorá" , "Nova Palma", "São Pedro do Sul"],
       "answer": 3
     },
     {
-      "id": 7,
-      "text": "Que batalha importante ocorreu durante a Revolução Farroupilha e é lembrada no Dia do Soldado?",
-      "options": ["Batalha de Rio Pardo", "Batalha de Santa Maria", "Batalha do Avaí", "Batalha do Passo do Rosário"],
+      "id": 2,
+      "text": "Qual foi uma descoberta nos Geoparques?",
+      "options": ["Berthasaura leopoldinae", "Amazonsaurus Maranhemsis", "Macrocollum itaquii", "Ubirajara jubatus"],
       "answer": 2
+    },
+    {
+      "id": 3,
+      "text": "Onde se localiza o Geoparque da Quarta Colônia?",
+      "options": ["Planalto do Leste-Sudeste","Planalto Meridional Brasileiro", "Planalto das Guianas", "Planalto do Tibete"],
+      "answer": 1
+    },
+    {
+      "id": 4,
+      "text": "Que ponto turístico é considerado um 'símbolo de união entre a terra Ivorense e a terra italiana'?",
+      "options": ["Monte Grappa", "Rota das Esculturas", "Igreja de Corpus Christi", "Balneário Municipal"],
+      "answer": 0
+    },
+    {
+      "id": 5,
+      "text": "Que cidade do Geoparque está à leste do Rio Jacuí?",
+      "options": ["Faxinal do Soturno", "Vale Vêneto", "Santa Cruz", "Agudo"],
+      "answer": 0
+    },
+    {
+      "id": 6,
+      "text": "São João do Polésine se destaca por ter qual das características abaixo?",
+      "options": ["Maior acervo histórico-cultural italiano do RS", "Trabalho dos imigrantes", "Rápido desenvolvimento econômico", "Relevo privilegiado"],
+      "answer": 0
+    },
+    {
+      "id": 7,
+      "text": "Qual principais características do Bioma Pampa?",
+      "options": ["Baixa ocorrência de chuvas", "Terras baixas e planas", "Regime de cheias local", "Clima Equatorial"],
+      "answer": 1
     },
     {
       "id": 8,
-      "text": "Qual é o tradicional prato gaúcho feito com arroz, feijão, carne e condimentos?",
-      "options": ["Chimarrão", "Feijoada", "Arroz de Carreteiro", "Churrasco"],
-      "answer": 2
+      "text": "O Passo das Tunas é ponto turístico de qual cidade?",
+      "options": ["Vale Vêneto", "Restinga Seca", "Dona Francisca", "Ivorá"],
+      "answer": 1
     },
     {
       "id": 9,
-      "text": "Quem é o líder das Milícias Tradicionalistas Gaúchas (MTG) que promove a preservação da cultura gaúcha?",
-      "options": ["Paixão Côrtes", "Teixeirinha", "Gildo de Freitas", "Neto Fagundes"],
+      "text": "Em qual cidade foram descobertos os dinossauros Sacisaurus agudoensis, Pampadromaeus barberenai, Macrocollum Itaquii, e Erythovenator jacuiensis?",
+      "options": ["Agudo", "Dona Francisca", "Santa Maria", "São Gabriel"],
       "answer": 0
     },
     {
       "id": 10,
-      "text": "Qual cidade gaúcha é conhecida como a 'Capital das Goleadas' devido ao seu time de futebol?",
-      "options": ["Caxias do Sul", "Porto Alegre", "Pelotas", "Santa Maria"],
-      "answer": 2
+      "text": "Qual nome foi delegado à Agudo pela Câmara dos Deputados de Brasília?",
+      "options": ["Cidade da Cuca", "Berço da Cuca e Chimia", "Cidade da Torta", "Berço Nacional dos Dinossauros"],
+      "answer": 3
     },
     {
       "id": 11,
-      "text": "O que o termo 'Caudilho' significa na história política do Rio Grande do Sul?",
-      "options": ["Chefe político-militar", "Líder religioso", "Governador", "Explorador de ouro"],
+      "text": "Em 1880, Dona Francisca pertencia à que grupo?",
+      "options": ["Antiga Colônia de Santo Ângelo", "Quarta Colônia", "Caçapava do Sul", "Silveira Martins"],
       "answer": 0
     },
     {
       "id": 12,
-      "text": "Qual é o nome do político gaúcho que foi presidente do Brasil por duas vezes durante a República Velha?",
-      "options": ["Vargas", "Jango", "Sarney", "Washington Luís"],
-      "answer": 3
+      "text": "O que significa Bagualosaurus agudoensis?",
+      "options": ["Lagarto bagual de Agudo", "Guaipeca de Anta Gorda", "Cusco de Ivorá", "Magrão de Porto Alegre"],
+      "answer": 0
     }
   ]
 }

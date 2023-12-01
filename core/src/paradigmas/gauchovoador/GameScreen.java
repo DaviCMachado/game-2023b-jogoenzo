@@ -33,6 +33,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        game.updateCoordinates();
         advanceLogic();
 
         ScreenUtils.clear(Color.BLACK);
@@ -59,7 +60,7 @@ public class GameScreen implements Screen {
         }
 
         if ((optionCircles == null || optionCircles.allOutOfBounds())) {
-            optionCircles = new OptionCircles(quiz.next(), 3.5f);
+            optionCircles = new OptionCircles(quiz.next(), 2.8f);
         }
 
         optionCircles.update();

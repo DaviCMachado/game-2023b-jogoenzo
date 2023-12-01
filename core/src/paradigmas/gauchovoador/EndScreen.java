@@ -44,7 +44,10 @@ public class EndScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        game.updateCoordinates();
+
         ScreenUtils.clear(Color.DARK_GRAY);
+
         game.batch.begin();
         resultImage.draw(game.batch);
         game.font.draw(game.batch, layout, Main.WORLD_WIDTH / 2f, Main.WORLD_HEIGHT / 5f);
