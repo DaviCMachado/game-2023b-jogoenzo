@@ -21,7 +21,7 @@ public class Bagualo {
         score = 0;
         layout = new GlyphLayout();
 
-        sprite = new Sprite(new Texture("bagualo.png"));
+        sprite = new Sprite(new Texture("img/bagualo.png"));
         sprite.setSize(sprite.getWidth() * 0.7f, sprite.getHeight() * 0.7f);
         sprite.setOrigin(0, 0);
         sprite.setCenter(Main.WORLD_WIDTH * 12f / 100, Main.WORLD_HEIGHT * 50f / 100);

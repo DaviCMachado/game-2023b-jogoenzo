@@ -1,6 +1,9 @@
 package paradigmas.gauchovoador;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -11,6 +14,9 @@ public class GameScreen implements Screen {
     private final Quiz quiz;
     private OptionCircles optionCircles;
     private final Texture backgroundTexture;
+    private final Sound correctSound;
+    private final Sound wrongSound;
+    private final Music soundtrack;
 
     private enum Endgame {
         LOSE,
@@ -21,12 +27,17 @@ public class GameScreen implements Screen {
         this.game = game;
         quiz = new Quiz();
         bagualo = new Bagualo(3);
-        backgroundTexture = new Texture("quarta-bg.png");
+        backgroundTexture = new Texture("img/quarta-bg.png");
+
+        correctSound = Gdx.audio.newSound(Gdx.files.internal("audio/correct-sfx.ogg"));
+        wrongSound = Gdx.audio.newSound(Gdx.files.internal("audio/wrong-sfx.ogg"));
+        soundtrack = Gdx.audio.newMusic(Gdx.files.internal("audio/soundtrack.ogg"));
+        soundtrack.setLooping(true);
+        soundtrack.play();
     }
 
     @Override
     public void render(float delta) {
-        game.updateCoordinates();
         advanceLogic();
 
         ScreenUtils.clear(Color.BLACK);
@@ -46,12 +57,10 @@ public class GameScreen implements Screen {
 
 
     private void advanceLogic() {
+        game.updateCoordinates();
+
         if (!quiz.hasNext()) {
-            if (bagualo.getLives() > 0) {
-                endgame(Endgame.WIN);
-            } else {
-                endgame(Endgame.LOSE);
-            }
+            endgame(Endgame.WIN);
         }
 
         if ((optionCircles == null || optionCircles.allOutOfBounds())) {
@@ -66,12 +75,15 @@ public class GameScreen implements Screen {
             case NO:
                 break;
             case YES_WRONG:
+                wrongSound.play();
                 optionCircles.setActive(false);
-                if (bagualo.decreaseLive()) {
+                bagualo.decreaseLive();
+                if (bagualo.getLives() == 0) {
                     endgame(Endgame.LOSE);
                 }
                 break;
             case YES_CORRECT:
+                correctSound.play();
                 optionCircles.setActive(false);
                 bagualo.increaseScore(5);
                 break;
@@ -79,6 +91,7 @@ public class GameScreen implements Screen {
     }
 
     void endgame(Endgame result) {
+        soundtrack.stop();
         game.setScreen(new HomeScreen(game));
     }
 
@@ -100,5 +113,9 @@ public class GameScreen implements Screen {
     public void hide() { }
 
     @Override
-    public void dispose() { }
+    public void dispose() {
+        correctSound.dispose();
+        wrongSound.dispose();
+        soundtrack.dispose();
+    }
 }
