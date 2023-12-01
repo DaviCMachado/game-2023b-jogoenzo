@@ -18,11 +18,6 @@ public class GameScreen implements Screen {
     private final Sound wrongSound;
     private final Music soundtrack;
 
-    private enum Endgame {
-        LOSE,
-        WIN,
-    }
-
     public GameScreen(final Main game) {
         this.game = game;
         quiz = new Quiz();
@@ -60,7 +55,7 @@ public class GameScreen implements Screen {
         game.updateCoordinates();
 
         if (!quiz.hasNext()) {
-            endgame(Endgame.WIN);
+            endgame(EndScreen.Result.WIN);
         }
 
         if ((optionCircles == null || optionCircles.allOutOfBounds())) {
@@ -79,7 +74,7 @@ public class GameScreen implements Screen {
                 optionCircles.setActive(false);
                 bagualo.decreaseLive();
                 if (bagualo.getLives() == 0) {
-                    endgame(Endgame.LOSE);
+                    endgame(EndScreen.Result.LOSE);
                 }
                 break;
             case YES_CORRECT:
@@ -90,9 +85,9 @@ public class GameScreen implements Screen {
         }
     }
 
-    void endgame(Endgame result) {
+    void endgame(EndScreen.Result result) {
         soundtrack.stop();
-        game.setScreen(new HomeScreen(game));
+        game.setScreen(new EndScreen(game, result, bagualo.getScore()));
     }
 
     @Override
